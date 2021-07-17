@@ -9,7 +9,7 @@ Generate a password tailored to your specifications hassle-free
 * JavaScript
 
 ## Website
-https://JonnyCano.github.io/password-generator-by-Jonny/
+https://jonnycano.github.io/password-generator-by-Jonny/
 
 ## gitHub Repository
 https://github.com/JonnyCano/password-generator-by-Jonny/
