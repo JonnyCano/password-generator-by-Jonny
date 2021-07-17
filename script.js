@@ -11,7 +11,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword(password) {
-    //var password = generatePassword();
+
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
@@ -24,7 +24,7 @@ function getPasswordLength() {
   
   // confirm valid entry
   if (!passwordLength || passwordLength == null || passwordLength < 8 || passwordLength > 128) {
-      alert("Enter a valid value")
+      alert("Enter a valid value greater than or equal to 8 and less than or equal to 128")
       getPasswordLength()
   } else {
       generatePassword(parseInt(passwordLength))
@@ -33,28 +33,62 @@ function getPasswordLength() {
 
 // tailor the users password by asking them if they would like to include lower case letters
 function getUserLowerCaseData() {
-    let lowerCaseConfirm = confirm("Would you like to include lower-case letters in your password?")
+    let lowerCaseConfirm = confirm("Would you like to include lower-case letters in your unique password?")
+    return lowerCaseConfirm
+}
 
-    if (lowerCaseConfirm) {
-        return true
-    } else {
-        return false
-    }
+function getUserUpperCaseData() {
+    let upperCaseConfirm = confirm("Would you like to include upper-case letters in your unique password?")
+    return upperCaseConfirm
+}
+
+function getUserNumberData() {
+    let numberConfirm = confirm("Would you like to include numbers in your unique password?")
+    return numberConfirm
+}
+
+function getUserSpecialCharacterData() {
+    let symbolConfirm = confirm("Would you like to include special characters in your unique password?")
+    return symbolConfirm
 }
 
 // concatenate the arrays and loop through the array equal to the amount of times the user entered for their password length
 function generatePassword(passwordLength) {
     
     let passwordValue = ""
-    let passwordArray = lowerCase.concat(upperCase).concat(numbersArabic).concat(specialCharacter)
-    for (var i = 0; passwordLength > i; i++) {
-        passwordValue += passwordArray[Math.floor(Math.random() * passwordArray.length)]
+    let passwordArray = []
+
+    // .concat(lowerCase)
+    if(getUserLowerCaseData()){
+        passwordArray = passwordArray.concat(lowerCase)
     }
 
-    if (getUserLowerCaseData()) {
-      console.log(passwordArray)
-    } else {
-      console.log("still got it")
+    // .concat(upperCase)
+    if (getUserUpperCaseData()) {
+        passwordArray = passwordArray.concat(upperCase)
+    }
+
+    // .concat(numbersArabic)
+    if (getUserNumberData()) {
+        passwordArray = passwordArray.concat(numbersArabic)
+    }
+
+    // .concat(specialCharacter)
+    if (getUserSpecialCharacterData()) {
+        passwordArray = passwordArray.concat(specialCharacter)
+    }
+    
+    // confirm user chose any character set for password value
+    if(passwordArray.length==0){
+        alert("Error: no characters picked. Please go back and choose characters to populate password.")
+        return generatePassword(passwordLength)
+    }
+
+    console.log(passwordArray)
+    for (var i = 0; passwordLength > i; i++) {
+        const randomNumber = Math.floor(Math.random() * passwordArray.length)
+        const char = passwordArray[randomNumber]
+        passwordValue += char
     }
 
     writePassword(passwordValue)

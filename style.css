@@ -30,6 +30,10 @@ header {
   color: hsl(206, 17%, 28%);
 }
 
+h2 {
+  text-align: center;
+}
+
 .card {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
@@ -107,7 +111,7 @@ button[disabled] {
   padding-top: 20px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-bottom: 65px;
+  padding-bottom: 75px;
   font-size: 1.2rem;
   text-align: center;
   margin-top: 10px;
@@ -133,5 +137,8 @@ button[disabled] {
 @media (max-width: 500px) {
   .btn {
     font-size: 0.8rem;
+  }
+  #password {
+    padding-bottom: 120px;
   }
 }
